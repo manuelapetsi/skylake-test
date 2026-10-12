@@ -1,0 +1,19 @@
+name: Live check d-1791816425
+on:
+  push:
+    branches: ['live/d-1791816425']
+jobs:
+  passes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo hello
+  fails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up
+        run: echo ready
+      - name: Fail on purpose
+        run: |
+          echo "::error file=live/d-1791816425.txt,line=1::Deliberate failure for the live check"
+          exit 1
